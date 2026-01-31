@@ -1,0 +1,53 @@
+from django import forms
+
+from .models import Profile
+
+from re import fullmatch
+
+class LoginForm(forms.Form):
+
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control','required':'required'}))
+
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','required':'required'}))
+
+
+class SignUpForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Profile
+
+        fields= ['first_name','last_name','email']
+
+        widgets = {
+
+            'first_name' : forms.TextInput(attrs={'class':'form-control'}),
+
+            'last_name' : forms.TextInput(attrs={'class':'form-control'}),
+
+            'email' : forms.EmailInput(attrs={'class':'form-control'}),
+        }
+
+
+class AddPhoneForm(forms.Form):
+
+    phone = forms.CharField(max_length=14,widget=forms.TextInput(attrs={'class':'form-control'}))
+
+
+    def clean(self):
+
+        cleaned_data = super().clean()
+
+        phone = cleaned_data.get('phone')
+
+        pattern = '(+91)?\\s?\\d{10}'
+
+        valid = fullmatch(pattern,phone)
+
+        if not valid :
+
+            self.add_error('phone','invalid phone number')
+
+        if Profile.objects.filter(phone=phone).exists():
+
+            self.add_error('phone','this phone number is already registered')

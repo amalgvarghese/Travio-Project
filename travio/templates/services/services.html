@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block section %}
+
+<!-- Services Hero Section -->
+<section class="services-hero py-5" style="background: linear-gradient(135deg, #e0f7fa, #ffffff);">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Our Services</h1>
+        <p class="lead mt-3 col-md-8 mx-auto">
+            Travio brings you curated travel experiences with complete convenience and comfort.
+        </p>
+    </div>
+</section>
+
+<!-- Services Grid -->
+<section class="services-section py-5">
+    <div class="container">
+        <div class="row g-4">
+            
+            <!-- Service Card 1 -->
+            <div class="col-md-4">
+                <div class="service-card text-center p-4 shadow rounded-4">
+                    <div class="service-icon mb-3">
+                        <i class="bi bi-globe2 fs-1 text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2">Curated Destinations</h4>
+                    <p>Handpicked packages for every traveler, from serene beaches to thrilling adventures.</p>
+                </div>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="col-md-4">
+                <div class="service-card text-center p-4 shadow rounded-4">
+                    <div class="service-icon mb-3">
+                        <i class="bi bi-clock-history fs-1 text-warning"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2">24/7 Support</h4>
+                    <p>Our team is always available to assist you, before, during, and after your trip.</p>
+                </div>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="col-md-4">
+                <div class="service-card text-center p-4 shadow rounded-4">
+                    <div class="service-icon mb-3">
+                        <i class="bi bi-currency-rupee fs-1 text-success"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2">Best Price Guarantee</h4>
+                    <p>Transparent pricing with no hidden costs. Get the best deals for your dream trips.</p>
+                </div>
+            </div>
+
+            <!-- Service Card 4 -->
+            <div class="col-md-4">
+                <div class="service-card text-center p-4 shadow rounded-4">
+                    <div class="service-icon mb-3">
+                        <i class="bi bi-lightning fs-1 text-danger"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2">Fast & Easy Booking</h4>
+                    <p>Book your package in just a few clicks. Hassle-free payments and confirmations.</p>
+                </div>
+            </div>
+
+            <!-- Service Card 5 -->
+            <div class="col-md-4">
+                <div class="service-card text-center p-4 shadow rounded-4">
+                    <div class="service-icon mb-3">
+                        <i class="bi bi-airplane fs-1 text-info"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2">Custom Travel Plans</h4>
+                    <p>Create personalized travel itineraries to match your preferences and interests.</p>
+                </div>
+            </div>
+
+            <!-- Service Card 6 -->
+            <div class="col-md-4">
+                <div class="service-card text-center p-4 shadow rounded-4">
+                    <div class="service-icon mb-3">
+                        <i class="bi bi-people fs-1 text-secondary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2">Group & Family Packages</h4>
+                    <p>Special packages designed for groups, families, and honeymooners for maximum fun.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="services-cta py-5 text-center" style="background: #00c853; color: #fff;">
+    <div class="container">
+        <h2 class="fw-bold">Ready to Explore?</h2>
+        <p class="mb-4">Discover your next adventure with Travio. Find your perfect travel package today!</p>
+        <a href="{% url 'package-list' %}" class="btn travel-btn">
+            <span class="text">Explore Packages</span>
+            <span class="plane">✈️</span>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

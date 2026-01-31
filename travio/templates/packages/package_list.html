@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+<style>
+  /* Move button slightly toward center */
+  .btn-accent-arrow {
+    transform: translateX(-80px); /* adjust value as needed */
+  }
+</style>
+
+<section id="special-offer" class="pb-5 mb-5">
+
+    <!-- Button -->
+    <div class="d-flex justify-content-end btn-wrap">
+        <a class="btn btn-outline-accent btn-accent-arrow" href="{% url 'package-create' %}">
+            Add Package <i class="icon icon-ns-arrow-right"></i>
+        </a>
+    </div>
+
+    <!-- Section Header -->
+    <div class="section-header align-center">
+        <h2 class="section-title">Book now and get 30% off!</h2>
+        <div class="title">
+            <span>Celebrate the season with special festival savings just for you..! 🎉</span>
+        </div>
+    </div>
+
+    <!-- Packages -->
+    <div class="container ">
+        <div class="row">
+
+            {% for package in packages %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="product-item">
+                    <figure class="product-style">
+                        <img src="{{ package.photo.url }}" alt="{{ package.name }}" class="img-fluid">
+                        <a href="{% url 'package-details' package.uuid %}"><button type="button" class="add-to-cart">Book Now</button></a>
+                    </figure>
+
+                    <figcaption>
+                        <h3>╰┈➤ {{ package.name }}</h3>
+
+                        <div class="item-price">
+                            <h5>⏳ {{ package.duration }}</h5>
+                        </div>
+
+                        <div class="item-price">
+                            <h5>₹{{ package.price }}/person</h5>
+                        </div>
+                    </figcaption>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

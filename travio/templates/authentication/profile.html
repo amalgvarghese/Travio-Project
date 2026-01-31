@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+<section class="profile-section py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h1 class="mb-4 text-center fw-semibold">My Profile</h1>
+
+            <!-- Name -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Name:</label>
+              <p class="form-control bg-light">{{user.first_name}} {{user.last_name}}</p>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Email Address:</label>
+              <p class="form-control bg-light">{{user.email}}</p>
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Phone Number:</label>
+
+              <p class="form-control bg-light">{% if user.phone %} {{user.phone}} {% endif %} {% if not user.phone %}</p>
+
+              <!-- If phone exists -->
+                <span>
+                    <a href="{% url 'add-phone' %}">
+                        <button class="btn btn-outline-primary w-100 rounded-pill">+ Add Phone Number</button>
+                    </a>
+              <!-- If phone NOT added -->
+
+              </span>
+              {% endif %}
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}

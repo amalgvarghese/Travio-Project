@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+
+<!-- HERO -->
+<section class="contact-hero">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Let’s Talk <span>Travel</span></h1>
+        <p class="lead col-md-6 mt-3">
+            Have a question, need help, or planning your next adventure?
+            We’re just one message away.
+        </p>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Form -->
+            <div class="col-lg-7">
+                <div class="glass">
+                    <h3 class="fw-bold mb-4">Send Us a Message</h3>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Your Name">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Email Address">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="tel" class="form-control" placeholder="Phone Number">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Destination Interest">
+                            </div>
+                            <div class="col-12">
+                                <textarea rows="5" class="form-control" placeholder="Tell us about your travel plan..."></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-travio w-100">
+                                    Send Message ✈️
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="col-lg-5">
+                <div class="info-card">
+                    <h3 class="fw-bold mb-4">Contact Details</h3>
+
+                    <div class="info-item d-flex mb-4">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <div>
+                            <strong>Office</strong>
+                            <p class="mb-0">Travio HQ, India</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item d-flex mb-4">
+                        <i class="bi bi-envelope-fill"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p class="mb-0">support@travio.com</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item d-flex mb-4">
+                        <i class="bi bi-telephone-fill"></i>
+                        <div>
+                            <strong>Phone</strong>
+                            <p class="mb-0">+91 98765 43210</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item d-flex">
+                        <i class="bi bi-clock-fill"></i>
+                        <div>
+                            <strong>Working Hours</strong>
+                            <p class="mb-0">Mon – Sat : 9 AM – 7 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- MAP -->
+<section class="py-5">
+    <div class="container map">
+        <iframe
+            src="https://maps.google.com/maps?q=india&t=&z=4&ie=UTF8&iwloc=&output=embed">
+        </iframe>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-4 text-center">
+    <p class="mb-0">© 2026 TRAVIO | Your Journey Begins With Us 🌍</p>
+</footer>
+
+</body>
+</html>
+
+
+{% endblock %}

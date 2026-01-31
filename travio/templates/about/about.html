@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1 class="display-3 fw-bold">About <span>Travio</span></h1>
+        <p class="lead mt-4 col-md-7">
+            Your trusted companion for discovering destinations, booking unforgettable journeys,
+            and creating lifelong travel memories.
+        </p>
+        <a href="{% url 'package-list' %}" class="btn  btn-success btn-lg mt-3 px-4 rounded-pill">
+            Explore Packages
+        </a>
+    </div>
+</section>
+
+<!-- Who We Are -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-md-6">
+                <div class="glass-card">
+                    <h2 class="section-title">Who We Are</h2>
+                    <p>
+                        <strong>Travio</strong> is a smart travel package booking platform
+                        built to simplify your travel planning.
+                        From serene beaches to thrilling adventures,
+                        we curate experiences that suit every traveler.
+                    </p>
+                    <p>
+                        We focus on transparency, comfort, and reliability
+                        so that you can travel stress-free and happy.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff"
+                     class="img-fluid rounded-4 shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Our Journey</h2>
+        <div class="timeline col-md-8 mx-auto">
+            <div class="timeline-item">
+                <h5>2024 – Idea Born</h5>
+                <p>The vision to simplify travel package booking was born.</p>
+            </div>
+            <div class="timeline-item">
+                <h5>2025 – Platform Launched</h5>
+                <p>Travio officially launched with curated travel packages.</p>
+            </div>
+            <div class="timeline-item">
+                <h5>2026 – Growing Globally</h5>
+                <p>Expanding destinations and serving travelers worldwide.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Why Choose Travio</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature text-center">
+                    <i class="bi bi-globe fs-1 text-primary"></i>
+                    <h5 class="mt-3 fw-bold">Curated Destinations</h5>
+                    <p>Handpicked packages covering popular & hidden gems.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature text-center">
+                    <i class="bi bi-currency-rupee fs-1 text-primary"></i>
+                    <h5 class="mt-3 fw-bold">Best Price Guarantee</h5>
+                    <p>Affordable packages with no hidden costs.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature text-center">
+                    <i class="bi bi-lightning-charge fs-1 text-primary"></i>
+                    <h5 class="mt-3 fw-bold">Fast & Easy Booking</h5>
+                    <p>Book your dream trip in just a few clicks.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-4 text-center">
+    <p class="mb-0">© 2026 Travio | Travel Smarter, Travel Better</p>
+</footer>
+
+</body>
+</html>
+
+{% endblock %}

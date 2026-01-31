@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block section %}
+
+
+<!-- DETAILS -->
+<div class="container my-5">
+  <div class="row g-4">
+
+    <!-- LEFT CONTENT -->
+
+    <div class="col-md-8 ">
+<div class="card info-card border-0 p-4 mb-4">
+  <div class="d-flex align-items-center gap-3 flex-wrap">
+    
+    <h1 class="fw-semibold mb-0">About {{ package.name }}</h1>
+    <a href="{% url 'package-edit' package.uuid %}"><i class="fa-solid fa-pen text-dark mx-2"></i></a>
+    <a href="#"><i class="fa-solid fa-trash text-dark mx-2"></i></a>
+
+    <p class="text-muted mb-0">
+      {{ package.description }}
+    </p>
+
+  </div>
+</div>
+
+
+
+
+      <div class="card info-card border-0 p-4">
+        <h3 class="fw-bold ">Trip Details</h3>
+
+        <div class="row mb-2">
+          <div class="col-6 text-muted">Place</div>
+          <div class="col-6 fw-bold">{{ package.name }}</div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-6 text-muted">Start Date</div>
+          <div class="col-6 fw-bold">{{ package.start_date }}</div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-6 text-muted">Destination Type</div>
+          <div class="col-6 fw-bold">{{ package.destination_type }}</div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-6 text-muted">Package Type</div>
+          <div class="col-6 fw-bold">{{ package.package_type }}</div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-6 text-muted">Mentor</div>
+          <div class="col-6 fw-bold">{{ package.mentor }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SUMMARY -->
+    <div class="col-md-4">
+      <div class="card info-card border-0 p-4">
+        <h2 class="fw-bold mb-3">Package Summary</h2>
+
+        <span class="badge badge-custom mb-2 text-bg-dark">{{ package.duration }}</span>
+
+        <p class="price mb-3">₹{{ package.price }}</p>
+
+        <ul class="list-unstyled text-muted mb-4">
+          <li>✔ Expert curated trip</li>
+          <li>✔ Mentor support</li>
+          <li>✔ Rental vehicles available</li>
+          <li>✔ With food & Accomodation</li>
+        </ul>
+
+        <a href="#" class="btn btn-success w-100 py-2  rounded-pill">
+          Book Now
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

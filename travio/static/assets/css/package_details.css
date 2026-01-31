@@ -1,0 +1,36 @@
+
+  .hero {
+    margin-top: 0 !important;
+    height: 55vh;
+    background: url('{{ package.photo.url }}') center/cover no-repeat;
+    position: relative;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .info-card {
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  .price {
+    color: #16a34a;
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  .badge-custom {
+    background: #e5f9f0;
+    color: #047857;
+    font-weight: 500;
+  }

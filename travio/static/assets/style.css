@@ -2442,3 +2442,136 @@ footer#footer {
     width: 100%;
   }
 }
+
+
+
+
+.travel-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 34px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #00c853, #2e7d32);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.travel-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.travel-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: translateX(-100%);
+}
+
+.travel-btn:hover::before {
+  animation: shine 1s linear;
+}
+
+@keyframes shine {
+  100% { transform: translateX(100%); }
+}
+
+.travel-btn .plane {
+  animation: fly 1.6s ease-in-out infinite;
+}
+
+@keyframes fly {
+  0%,100% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
+}
+
+
+
+
+/* Service cards */
+.service-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: #fff;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Icons inside service cards */
+.service-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #f1f1f1;
+    margin: 0 auto;
+}
+
+/* CTA button (reuse travel button style) */
+.travel-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 38px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #00c853, #009688);
+    border-radius: 50px;
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0 8px 0 #00796b, 0 15px 30px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.travel-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 0 #00796b, 0 22px 40px rgba(0,0,0,0.35);
+}
+
+.travel-btn .plane {
+    animation: fly 2s infinite ease-in-out;
+}
+
+@keyframes fly {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(8px) translateY(-6px); }
+    100% { transform: translateX(0) translateY(0); }
+}
+
+
+
+
+.service-logo {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.service-card {
+    background: #ffffff;
+    transition: all 0.35s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.service-card:hover .service-logo {
+    transform: scale(1.15);
+}
+
+

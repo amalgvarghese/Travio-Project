@@ -1,0 +1,92 @@
+.create-package-wrapper {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  min-height: 100vh;
+  padding: 70px 0;
+}
+
+.package-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.package-card .card-header {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  border-radius: 22px 22px 0 0;
+  text-align: center;
+  padding: 32px;
+}
+
+.package-card .card-header h3 {
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.package-card .subtitle {
+  opacity: 0.85;
+  font-size: 14px;
+}
+
+.package-card label {
+  font-weight: 600;
+  color: #f1f1f1;
+}
+
+.package-card input,
+.package-card select,
+.package-card textarea {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  width: 100%;
+}
+
+.package-card input::placeholder,
+.package-card textarea::placeholder {
+  color: #dddddd;
+}
+
+.package-card input:focus,
+.package-card select:focus,
+.package-card textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 198, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.hint {
+  color: #d3d3d3;
+  font-size: 13px;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 12px 40px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(0, 198, 255, 0.6);
+}
+
+
+
+
+
+
+input:not(:focus) {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+  opacity: 1 !important;
+}
