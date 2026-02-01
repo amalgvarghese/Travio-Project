@@ -40,7 +40,7 @@ class AddPhoneForm(forms.Form):
 
         phone = cleaned_data.get('phone')
 
-        pattern = '(+91)?\\s?\\d{10}'
+        pattern = '(\\+?91)?\\s?[6-9]\\d{9}'
 
         valid = fullmatch(pattern,phone)
 
@@ -48,6 +48,11 @@ class AddPhoneForm(forms.Form):
 
             self.add_error('phone','invalid phone number')
 
-        if Profile.objects.filter(phone=phone).exists():
+        if Profile.objects.filter(phone=phone).exclude(id=self.initial.get('user_id')).exists():
+            
+            self.add_error('phone', 'this phone number is already registered')
 
-            self.add_error('phone','this phone number is already registered')
+
+class OTPForm(forms.Form):
+
+    otp = forms.CharField(max_length=4,widget=forms.TextInput(attrs={'class':'form-control'}))

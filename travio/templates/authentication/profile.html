@@ -27,7 +27,7 @@
             <div class="mb-3">
               <label class="form-label fw-semibold">Phone Number:</label>
 
-              <p class="form-control bg-light">{% if user.phone %} {{user.phone}} {% endif %} {% if not user.phone %}</p>
+              <p class="form-control bg-light">{% if user.phone and user.phone_verified %} {{user.phone}} {% endif %} {% if not user.phone %}</p>
 
               <!-- If phone exists -->
                 <span>

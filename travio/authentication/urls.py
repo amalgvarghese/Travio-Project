@@ -13,4 +13,6 @@ urlpatterns = [
     path('profile/',views.ProfileView.as_view(),name='profile'),
 
     path('add-phone/',views.AddPhoneView.as_view(),name='add-phone'),
+
+    path('verify-otp/',views.VerifyOTPView.as_view(),name='verify-otp'),
 ]
