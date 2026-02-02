@@ -11,22 +11,32 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','required':'required'}))
 
 
+
 class SignUpForm(forms.ModelForm):
 
-    class Meta:
+    class Meta :
 
         model = Profile
 
-        fields= ['first_name','last_name','email']
+        fields = ['first_name','last_name','email']
 
         widgets = {
 
             'first_name' : forms.TextInput(attrs={'class':'form-control'}),
-
             'last_name' : forms.TextInput(attrs={'class':'form-control'}),
-
             'email' : forms.EmailInput(attrs={'class':'form-control'}),
         }
+
+    def clean(self):
+
+         cleaned_data =  super().clean()
+
+         email = cleaned_data.get('email')
+
+         if Profile.objects.filter(username=email).exists():
+
+            self.add_error('email','this email is already registered')
+
 
 
 class AddPhoneForm(forms.Form):
@@ -56,3 +66,26 @@ class AddPhoneForm(forms.Form):
 class OTPForm(forms.Form):
 
     otp = forms.CharField(max_length=4,widget=forms.TextInput(attrs={'class':'form-control'}))
+
+
+
+# class ChangePasswordForm(forms.Form):
+
+#     new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','required':'required'}))
+
+#     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
+
+#     def clean(self):
+
+#         cleaned_data = super().clean()
+
+#         new_password = cleaned_data.get('new_password')
+
+#         confirm_password = cleaned_data.get('confirm_password')
+
+
+#         if new_password !=confirm_password :
+
+#             self.add_error('confirm_password','passwords does not match')
+
+    

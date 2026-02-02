@@ -15,4 +15,8 @@ urlpatterns = [
     path('add-phone/',views.AddPhoneView.as_view(),name='add-phone'),
 
     path('verify-otp/',views.VerifyOTPView.as_view(),name='verify-otp'),
+
+    path('password-otp/',views.ChangePasswordView.as_view(),name='password-otp'),
+
+    # path('verify-otp/',views.VerifyOTPView.as_view(),name='verify-otp'),
 ]

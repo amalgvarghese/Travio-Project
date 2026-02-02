@@ -50,7 +50,7 @@ class OTP(BaseClass):
 
     otp = models.CharField(max_length=4)
 
-    # email_otp = models.CharField(max_length=4)
+    email_otp = models.CharField(max_length=4)
 
     # email_otp_verified = models.BooleanField(default=False)
 

@@ -8,11 +8,13 @@ from django.contrib.auth import authenticate,login,logout
 
 from django.contrib.auth.hashers import make_password
 
-from travio.utils import generate_password,generate_otp,send_otp
+from travio.utils import generate_password,generate_otp,send_otp,send_email
 
 from . models import OTP
 
 from django .utils import timezone
+
+import threading
 
 # Create your views here.
 
@@ -96,13 +98,23 @@ class SignUpView(View):
 
             password = generate_password()
 
-            print(password)
-
             user.password = make_password(password)
 
             user.role = 'User'
 
             user.save()
+
+            recipient = user.email
+
+            template = 'emails/logincredentials.html'
+
+            subject = 'Travio :Login Credentials'
+
+            context = {'user':f'{user.first_name} {user.last_name}','username':user.email,'password':password}
+
+            thread = threading.Thread(target=send_email,args=(recipient,template,subject,context))
+
+            thread.start()
 
             return redirect('login')
         
@@ -231,5 +243,53 @@ class VerifyOTPView(View):
                     error = 'Invalid OTP'
 
         data = {'form':form,'remaining_time':remaining_time,'error':error}
+
+        return render(request,self.template,context=data)
+    
+
+
+class ChangePasswordView(View):
+
+    template = 'authentication/change-password.html'
+
+    form_class = ChangePasswordForm
+
+    def get(self,request,*args,**kwargs):
+
+        user=request.user
+
+        if user.otp.email_otp_verified:
+
+            form=self.form_class()
+
+            data={'form':form}
+
+            return render(request,self.template,context=data)
+        
+        else:
+
+            return redirect('password-otp')
+    
+    def post(self,request,*args,**kwargs):
+
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+
+            user = request.user
+
+            password = form.cleaned_data.get('new_password')
+
+            user.password = make_password(password)
+
+            user.save()
+
+            user.otp.email_otp_verified=False
+
+            user.otp.save()
+
+            return redirect('login')
+        
+        data = {'form':form}
 
         return render(request,self.template,context=data)
