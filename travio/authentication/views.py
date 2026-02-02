@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 
 from django.views import View
 
-from .forms import LoginForm,SignUpForm,AddPhoneForm,OTPForm
+from .forms import LoginForm,SignUpForm,AddPhoneForm,OTPForm,ChangePasswordForm
 
 from django.contrib.auth import authenticate,login,logout
 
@@ -15,6 +15,12 @@ from . models import OTP
 from django .utils import timezone
 
 import threading
+
+from django.contrib.auth.decorators import login_required
+
+from django.utils.decorators import method_decorator
+
+from.permissions import permitted_user_roles
 
 # Create your views here.
 
@@ -62,6 +68,7 @@ class LoginView(View):
         return render(request,self.template,context=data)
     
 
+@method_decorator(login_required(login_url='login'),name='dispatch')
 class LogoutView(View):
 
     def get(self,request,*args,**kwargs):
@@ -123,6 +130,7 @@ class SignUpView(View):
         return render(request,self.template,context=data)
     
 
+@method_decorator(permitted_user_roles(roles=['User','Admin']),name='dispatch')
 class ProfileView(View):
 
     template = 'authentication/profile.html'
@@ -132,7 +140,7 @@ class ProfileView(View):
         return render(request,self.template)
     
 
-
+@method_decorator(permitted_user_roles(roles=['User']),name='dispatch')
 class AddPhoneView(View):
 
     template = 'authentication/phone.html'
@@ -165,6 +173,7 @@ class AddPhoneView(View):
         return render(request,self.template,context=data)
     
 
+@method_decorator(permitted_user_roles(roles=['User']),name='dispatch')
 class VerifyOTPView(View):
 
     template = 'authentication/otp.html'
@@ -248,6 +257,97 @@ class VerifyOTPView(View):
     
 
 
+@method_decorator(permitted_user_roles(roles=['User']),name='dispatch')
+class ChangePasswordOTPView(View):
+
+    template = 'authentication/password-otp.html'
+
+    form_class = OTPForm
+
+    def get(self,request,*args,**kwargs):
+
+        form = self.form_class()
+        
+        otp = generate_otp()
+
+        user = request.user
+
+        otp_obj,created = OTP.objects.get_or_create(profile=user)
+
+        otp_obj.email_otp = otp
+
+        otp_obj.save()
+
+        recipient = user.email
+
+        template = 'emails/password-otp-email.html'
+
+        subject = 'Travio :OTP For change password'
+
+        context = {'user':f'{user.first_name} {user.last_name}','otp':otp}
+
+            # send_email(recipient,template,subject,context)
+
+        thread = threading.Thread(target=send_email,args=(recipient,template,subject,context))
+
+        thread.start()
+
+        request.session['otp_time'] = timezone.now().timestamp()
+
+        remaining_time = 300
+
+        data = {'form':form,'remaining_time':remaining_time}
+
+        return render(request,self.template,context=data)
+    
+
+    def post(self,request,*args,**kwargs):
+
+        form = self.form_class(request.POST)
+        
+        if form.is_valid():
+
+            user = request.user
+
+            db_otp = user.otp.email_otp
+
+            input_otp =form.cleaned_data.get('otp')
+
+            otp_time = request.session.get('otp_time')  
+
+            current_time = timezone.now().timestamp()
+
+            if otp_time :
+
+                elapsed = current_time - otp_time
+
+                remaining_time = max(0, 300 - int(elapsed))
+
+                if elapsed > 300 :
+
+                    error = 'OTP expired Request a Newone'
+
+                elif db_otp == input_otp:
+
+                    request.session.pop('otp_time')
+                    
+                    user.otp.email_otp_verified = True
+
+                    user.otp.save()
+
+                    return redirect('change-password')
+                
+                else :
+
+
+                    error = 'Invalid OTP'
+
+        data = {'form':form,'remaining_time':remaining_time,'error':error}
+
+        return render(request,self.template,context=data)
+    
+
+@method_decorator(permitted_user_roles(roles=['User']),name='dispatch')
 class ChangePasswordView(View):
 
     template = 'authentication/change-password.html'

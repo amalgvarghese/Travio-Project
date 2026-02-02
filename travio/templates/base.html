@@ -69,7 +69,7 @@
 
 							<ul class="dropdown-menu rounded-4" aria-labelledby="navbarDropdown">
 								{% if request.user.is_authenticated %}
-								<li class="dropdown-item"><a href="{% url 'profile' %}">Profile</a></li>
+								<li class="dropdown-item"><a href="{% url 'profile' %}" class="nav-link">Profile</a></li>
 								<hr class="dropdown-divider">
 								{% endif %}
 								{% if request.user.is_authenticated %}

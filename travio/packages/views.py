@@ -7,6 +7,11 @@ from .models import Package,MentorChoices,DestinationTypeChoices,PackageChoices
 from .forms import PackageForm
 
 from django.db.models import Q
+
+from django.utils.decorators import method_decorator
+
+from authentication.permissions import permitted_user_roles
+
 # Create your models here.
 
 class HomeView(View):
@@ -109,35 +114,41 @@ class PackageListView(View):
 #         return redirect('package-list')
 
 
-
-
+@method_decorator(permitted_user_roles(['Admin']),name='dispatch')
 class PackageCreateView(View):
 
-    form_class = PackageForm
+    form_class =PackageForm
 
-    template = 'packages/package_create.html'
-    
+    template = 'packages/package-create.html'
+
     def get(self,request,*args,**kwargs):
 
         form = self.form_class()
 
-        data = {'page':'Create Package','form':form}
+        data = {'page':'Create Package',
+                'form' : form,'page':'Create Package'}
 
         return render(request,self.template,context=data)
     
-    def post(self,request,*args,**kwargs):     
+    def post(self,request,*args,**kwargs):
 
-        form = self.form_class(request.POST,request.FILES)
+        form =  self.form_class(request.POST,request.FILES)
 
         if form.is_valid():
 
             form.save()
 
+            # messages.success(request,'package created succesfully')
+
             return redirect('package-list')
-    
-        data = {'page':'Create Package','form':form}
+        
+        data = {'form':form}
+
+        # messages.error(request,'package creation failed')
+
 
         return render(request,self.template,context=data)
+
 
 class PackageDetailsView(View):
 
@@ -156,8 +167,7 @@ class PackageDetailsView(View):
         return render(request,self.template,context=data)
 
 
-#  @method_decorator(permitted_user_roles(['Admin']),name='dispatch')  
-#  
+@method_decorator(permitted_user_roles(['Admin']),name='dispatch')   
 class PackageEditView(View):
 
     form_class = PackageForm
@@ -195,7 +205,7 @@ class PackageEditView(View):
         return render(request,self.template,context=data)
 
 
-
+@method_decorator(permitted_user_roles(['Admin']),name='dispatch')   
 class PackageDeleteView(View):
 
     def get(self,request,*args,**kwargs):
@@ -204,13 +214,11 @@ class PackageDeleteView(View):
 
         package = Package.objects.get(uuid=uuid)
 
-        # hard delete
         # package.delete()
 
         package.active_status = False
 
         package.save()
 
-        package.success(request,'package deleted succesfully')
-
         return redirect('package-list')
+    

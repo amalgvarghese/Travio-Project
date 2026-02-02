@@ -69,23 +69,23 @@ class OTPForm(forms.Form):
 
 
 
-# class ChangePasswordForm(forms.Form):
+class ChangePasswordForm(forms.Form):
 
-#     new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','required':'required'}))
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','required':'required'}))
 
-#     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
-#     def clean(self):
+    def clean(self):
 
-#         cleaned_data = super().clean()
+        cleaned_data = super().clean()
 
-#         new_password = cleaned_data.get('new_password')
+        new_password = cleaned_data.get('new_password')
 
-#         confirm_password = cleaned_data.get('confirm_password')
+        confirm_password = cleaned_data.get('confirm_password')
 
 
-#         if new_password !=confirm_password :
+        if new_password !=confirm_password :
 
-#             self.add_error('confirm_password','passwords does not match')
+            self.add_error('confirm_password','passwords does not match')
 
     

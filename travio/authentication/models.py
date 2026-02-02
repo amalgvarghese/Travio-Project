@@ -52,7 +52,8 @@ class OTP(BaseClass):
 
     email_otp = models.CharField(max_length=4)
 
-    # email_otp_verified = models.BooleanField(default=False)
+    email_otp_verified = models.BooleanField(default=False)
+
 
 
     class Meta :
