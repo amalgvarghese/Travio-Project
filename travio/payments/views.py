@@ -1,15 +1,25 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views import View
 from django.utils.decorators import method_decorator
 from authentication.permissions import permitted_user_roles
-from packages.models import Package   # adjust app name if needed
+from packages.models import Package
 import razorpay
 from decouple import config
 
-from django.shortcuts import render
-
 def payment_success(request):
-    return render(request, 'payments/payment_success.html')
+    package_uuid = request.session.get('package_uuid')
+    package = None
+
+    if package_uuid:
+        package = Package.objects.filter(uuid=package_uuid).first()
+        if package:
+            package.payment_status = 'paid'
+            package.save()
+
+    return render(request, 'payments/payment_success.html', {
+        'package': package
+    })
+
 
 
 def payment_failed(request):
@@ -23,21 +33,23 @@ class RazorPayView(View):
     def get(self, request, *args, **kwargs):
         uuid = kwargs.get('uuid')
 
-        package = get_object_or_404(Package, uuid=uuid)
+        package = Package.objects.filter(uuid=uuid).first()
+        if not package:
+            return redirect('payment_failed') 
 
         client = razorpay.Client(
             auth=(config("RZP_CLIENT_ID"), config("RZP_CLIENT_SECRET"))
         )
 
         order_data = {
-            "amount": int(package.price * 100),  # INR → paise
+            "amount": int(package.price * 100),  
             "currency": "INR",
             "payment_capture": 1
         }
 
         order = client.order.create(data=order_data)
 
-        # store order id in session (no DB)
+        # store data in session
         request.session['razorpay_order_id'] = order['id']
         request.session['package_uuid'] = str(package.uuid)
 
@@ -69,27 +81,7 @@ class PaymentVerifyView(View):
                 'razorpay_signature': rzp_signature
             })
 
-            # ✅ Payment success
             return redirect('payment_success')
 
         except razorpay.errors.SignatureVerificationError:
-            # ❌ Payment failed
             return redirect('payment_failed')
-
-
-
-
-
-
-from packages.models import Package  # adjust app name if needed
-
-def payment_success(request):
-    package_uuid = request.session.get('package_uuid')  # we stored this earlier
-    package = None
-    if package_uuid:
-        package = Package.objects.filter(uuid=package_uuid).first()
-
-    context = {
-        'package': package
-    }
-    return render(request, 'payments/payment_success.html', context)

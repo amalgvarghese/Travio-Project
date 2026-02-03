@@ -10,8 +10,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-10">
 
-        <!-- INLINE COLOR FIX ADDED HERE -->
-        <div class="card package-card" style="color: black;">
+        <div class="card package-card" style="color:black;">
           <div class="card-header">
             <h3>✈️ Create New Travel Package</h3>
             <p class="subtitle">
@@ -20,68 +19,110 @@
           </div>
 
           <div class="card-body p-4 p-md-5">
-            <form method="post" enctype="multipart/form-data">
-              {% csrf_token %}
 
+            <!-- FORM START -->
+            <form method="POST"
+                  action="{% url 'package-create' %}"
+                  enctype="multipart/form-data">
+
+              {% csrf_token %}
+              {{ form.non_field_errors }}
+
+              <!-- Package Name -->
               <div class="mb-4">
                 <label class="form-label">Package Name</label>
                 {{ form.name }}
+                {% if form.name.errors %}
+                  <p class="text-danger small">{{ form.name.errors }}</p>
+                {% endif %}
               </div>
 
+              <!-- Package Banner -->
               <div class="mb-4">
                 <label class="form-label">Package Banner</label>
                 {{ form.photo }}
+                {% if form.photo.errors %}
+                  <p class="text-danger small">{{ form.photo.errors }}</p>
+                {% endif %}
               </div>
 
+              <!-- Description -->
               <div class="mb-4">
                 <label class="form-label">Description</label>
                 {{ form.description }}
+                {% if form.description.errors %}
+                  <p class="text-danger small">{{ form.description.errors }}</p>
+                {% endif %}
               </div>
 
+              <!-- Dates / Destination / Duration -->
               <div class="row">
                 <div class="col-md-4 mb-4">
                   <label class="form-label">Start Date</label>
                   {{ form.start_date }}
+                  {% if form.start_date.errors %}
+                    <p class="text-danger small">{{ form.start_date.errors }}</p>
+                  {% endif %}
                 </div>
 
                 <div class="col-md-4 mb-4">
                   <label class="form-label">Destination Type</label>
                   {{ form.destination_type }}
+                  {% if form.destination_type.errors %}
+                    <p class="text-danger small">{{ form.destination_type.errors }}</p>
+                  {% endif %}
                 </div>
 
                 <div class="col-md-4 mb-4">
                   <label class="form-label">Duration</label>
                   {{ form.duration }}
+                  {% if form.duration.errors %}
+                    <p class="text-danger small">{{ form.duration.errors }}</p>
+                  {% endif %}
                 </div>
               </div>
 
+              <!-- Package Type / Mentor -->
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <label class="form-label">Package Type</label>
                   {{ form.package_type }}
+                  {% if form.package_type.errors %}
+                    <p class="text-danger small">{{ form.package_type.errors }}</p>
+                  {% endif %}
                 </div>
 
                 <div class="col-md-6 mb-4">
                   <label class="form-label">Mentors</label>
                   {{ form.mentor }}
+                  {% if form.mentor.errors %}
+                    <p class="text-danger small">{{ form.mentor.errors }}</p>
+                  {% endif %}
                   <small class="hint">
                     Hold Ctrl (Windows) or Cmd (Mac) to select multiple
                   </small>
                 </div>
               </div>
 
+              <!-- Price -->
               <div class="mb-4">
                 <label class="form-label">Price (INR)</label>
                 {{ form.price }}
+                {% if form.price.errors %}
+                  <p class="text-danger small">{{ form.price.errors }}</p>
+                {% endif %}
               </div>
 
+              <!-- Submit -->
               <div class="text-end mt-5">
                 <button type="submit" class="submit-btn">
-                  Save Package <i class="icon icon-ns-arrow-right ms-2"></i>
+                  Save Package
                 </button>
               </div>
 
             </form>
+            <!-- FORM END -->
+
           </div>
         </div>
 

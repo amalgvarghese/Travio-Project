@@ -70,27 +70,29 @@ class Mentor(BaseClass):
 
 class Package(BaseClass):
 
-    uuid = models.UUIDField(default=uuid.uuid4,editable=False,unique=True)
+    PAYMENT_STATUS = (
+        ('pending', 'Pending'),
+        ('paid', 'Paid'),
+        ('cancelled', 'Cancelled'),
+    )
 
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=100)
-
     photo = models.ImageField(upload_to='packages/banner-images')
-
     description = models.TextField()
-
     start_date = models.DateField()
-
-    destination_type = models.CharField(max_length=20,choices=DestinationTypeChoices.choices)
-
+    destination_type = models.CharField(max_length=20, choices=DestinationTypeChoices.choices)
     duration = models.CharField(max_length=50)
-
-    package_type = models.CharField(max_length=20,choices=PackageChoices.choices)
-
-    # mentor = MultiSelectField(max_length=50,choices=MentorChoices.choices)
-
-    mentor = models.ForeignKey('Mentor',on_delete=models.CASCADE)
-
+    package_type = models.CharField(max_length=20, choices=PackageChoices.choices)
+    mentor = models.ForeignKey('Mentor', on_delete=models.CASCADE)
     price = models.IntegerField()
+
+    payment_status = models.CharField(
+        max_length=20,
+        choices=PAYMENT_STATUS,
+        default='pending'
+    )
+
     
     
     class Meta :

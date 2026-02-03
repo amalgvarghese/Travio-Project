@@ -10,6 +10,8 @@ from django.db.models import Q
 
 from django.utils.decorators import method_decorator
 
+from  django.contrib import messages
+
 from authentication.permissions import permitted_user_roles
 
 # Create your models here.
@@ -114,7 +116,7 @@ class PackageListView(View):
 #         return redirect('package-list')
 
 
-@method_decorator(permitted_user_roles(['Admin']),name='dispatch')
+
 class PackageCreateView(View):
 
     form_class =PackageForm
@@ -125,29 +127,27 @@ class PackageCreateView(View):
 
         form = self.form_class()
 
-        data = {'page':'Create Package',
-                'form' : form,'page':'Create Package'}
+        data = {'page':'Create Package','form' : form,'page':'Create Package'}
 
         return render(request,self.template,context=data)
     
-    def post(self,request,*args,**kwargs):
-
-        form =  self.form_class(request.POST,request.FILES)
+    def post(self, request, *args, **kwargs):
+        
+        form = self.form_class(request.POST, request.FILES)
 
         if form.is_valid():
 
             form.save()
 
-            # messages.success(request,'package created succesfully')
+            messages.success(request,'package added successfully')
 
             return redirect('package-list')
         
-        data = {'form':form}
+        print(form.errors)
 
-        # messages.error(request,'package creation failed')
+        return render(request, self.template, {'form': form})
+    
 
-
-        return render(request,self.template,context=data)
 
 
 class PackageDetailsView(View):
@@ -160,7 +160,7 @@ class PackageDetailsView(View):
 
         package = Package.objects.get(uuid=uuid)
 
-        # recommended_packages = get_recommended_packages(package)
+       
 
         data = {'package':package,'page':package.name}
         

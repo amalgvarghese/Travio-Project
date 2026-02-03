@@ -1,0 +1,59 @@
+/* =====================
+   Travel Footer
+===================== */
+
+.travel-footer {
+  background-color: #0f172a;
+  color: #e5e7eb;
+  padding: 70px 0 20px;
+}
+
+.footer-brand img {
+  height: 55px;
+  margin-bottom: 15px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #cbd5e1;
+}
+
+.footer-menu h5 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
+.footer-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-menu ul li {
+  margin-bottom: 10px;
+}
+
+.footer-menu ul li a {
+  font-size: 14px;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-menu ul li a:hover {
+  color: #38bdf8;
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  padding-top: 15px;
+  border-top: 1px solid #1e293b;
+}
+
+.footer-bottom p {
+  font-size: 13px;
+  color: #94a3b8;
+}

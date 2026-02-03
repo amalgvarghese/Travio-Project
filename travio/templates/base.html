@@ -22,8 +22,10 @@
 <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
 
+
+
+	<link rel="stylesheet" href="{% static 'assets/css/base.css' %}">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-	
 	<link rel="stylesheet" href="{% static 'assets/css/service.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/edit-package.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/create-package.css' %}">
@@ -152,79 +154,68 @@
     {% endblock %}
 
 
+<footer id="footer" class="travel-footer">
+  <div class="container">
+    <div class="row gy-4">
 
+      <div class="col-md-4">
+        <div class="footer-brand">
+          <img src="{% static 'assets/images/logo.png' %}" style="width: 500px; height: auto;" alt="Travio logo">
+          <p>
+            Travio helps you discover amazing destinations, book trips easily,
+            and travel smarter with confidence.
+          </p>
+        </div>
+      </div>
 
+      <div class="col-md-2">
+        <div class="footer-menu">
+          <h5>About</h5>
+          <ul>
+            <li><a href="#" class="text-white">Vision</a></li>
+            <li><a href="#" class="text-white">Company</a></li>
+          </ul>
+        </div>
+      </div>
 
+      <div class="col-md-2">
+        <div class="footer-menu">
+          <h5>Explore</h5>
+          <ul>
+            <li><a href="#" class="text-white">Home</a></li>
+            <li><a href="#" class="text-white">Packages</a></li>
+          </ul>
+        </div>
+      </div>
 
-	<footer id="footer">
-		<div class="container">
-			<div class="row">
+      <div class="col-md-2">
+        <div class="footer-menu">
+          <h5>Account</h5>
+          <ul>
+            <li><a href="#" class="text-white">Sign In</a></li>
+            <li><a href="#" class="text-white">My Trips</a></li>
+          </ul>
+        </div>
+      </div>
 
-				<div class="col-md-4">
+      <div class="col-md-2">
+        <div class="footer-menu">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="#" class="text-white">Contact</a></li>
+            <li><a href="#" class="text-white">Help Center</a></li>
+          </ul>
+        </div>
+      </div>
 
-					<div class="footer-item">
-						<div class="company-brand">
-								<img src="{% static 'assets/images/logo.png' %}" alt="Travio logo" style="height:90%; width:auto;"></a>
-							<p>Travio is a smart travel web application designed to make planning, booking, and experiencing trips effortless.</p>
-						</div>
-					</div>
+    </div>
 
-				</div>
+    <div class="footer-bottom text-center">
+      <p>© 2026 Travio. Travel smarter 🌍</p>
+    </div>
+  </div>
+</footer>
 
-				<div class="col-md-2">
-
-					<div class="footer-menu">
-						<h5>About Us</h5>
-						<ul class="menu-list">
-							<li class="menu-item">
-								<a href="#">vision</a>
-							</li>
-						</ul>
-					</div>
-
-				</div>
-				<div class="col-md-2">
-
-					<div class="footer-menu">
-						<h5>Discover</h5>
-						<ul class="menu-list">
-							<li class="menu-item">
-								<a href="#">Home</a>
-
-						</ul>
-					</div>
-
-				</div>
-				<div class="col-md-2">
-
-					<div class="footer-menu">
-						<h5>My account</h5>
-						<ul class="menu-list">
-							<li class="menu-item">
-								<a href="#">Sign In</a>
-							</li>
-						</ul>
-					</div>
-
-				</div>
-				<div class="col-md-2">
-
-					<div class="footer-menu">
-						<h5>Help</h5>
-						<ul class="menu-list">
-							<li class="menu-item">
-								<a href="#">Contact us</a>
-							</li>
-						</ul>
-					</div>
-
-				</div>
-
-			</div>
-			<!-- / row -->
-
-		</div>
-	</footer>
 
 	<div id="footer-bottom">
 		<div class="container">

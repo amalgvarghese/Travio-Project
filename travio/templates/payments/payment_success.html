@@ -6,10 +6,25 @@
     <div class="card shadow text-center p-5">
         <h1 class="mb-3" style="color:#28a745;">Payment Successful!</h1>
         <p class="lead">Thank you for booking your package.</p>
+
         <p><strong>Package:</strong> {{ package.name }}</p>
         <p><strong>Amount Paid:</strong> ₹{{ package.price }}</p>
 
-        <a href="{% url 'package-list' %}" class="btn btn-primary mt-3">Back to Packages</a>
+        <!-- 🔥 STATUS FIELD ADDED -->
+        <p>
+            <strong>Status:</strong>
+            {% if package.payment_status == 'paid' %}
+                <span style="color:green; font-weight:600;">PAID</span>
+            {% elif package.payment_status == 'cancelled' %}
+                <span style="color:red; font-weight:600;">CANCELLED</span>
+            {% else %}
+                <span style="color:orange; font-weight:600;">PENDING</span>
+            {% endif %}
+        </p>
+
+        <a href="{% url 'package-list' %}" class="btn btn-primary mt-3">
+            Back to Packages
+        </a>
     </div>
 </div>
 
