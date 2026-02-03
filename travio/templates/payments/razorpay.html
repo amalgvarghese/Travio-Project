@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+
+<!-- Razorpay checkout form -->
+<form id="razorpay-form" action="{% url 'payment_verify' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="razorpay_order_id" value="{{ order_id }}">
+    <input type="hidden" name="razorpay_payment_id" id="rzp_payment_id">
+    <input type="hidden" name="razorpay_signature" id="rzp_signature">
+</form>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "{{ RZP_CLIENT_ID }}",
+        "amount": "{{ package.price|floatformat:2 }}", // in rupees
+        "currency": "INR",
+        "name": "Travio Packages",
+        "description": "{{ package.name }} payment",
+        "order_id": "{{ order_id }}",
+        "handler": function (response){
+            // store response in hidden form fields
+            document.getElementById('rzp_payment_id').value = response.razorpay_payment_id;
+            document.getElementById('rzp_signature').value = response.razorpay_signature;
+
+            // submit form to verify payment
+            document.getElementById('razorpay-form').submit();
+        },
+        "theme": {
+            "color": "#e50914"
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+</script>
+{% endblock %}

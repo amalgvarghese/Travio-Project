@@ -30,8 +30,6 @@
 </div>
 
 
-
-
       <div class="card info-card border-0 p-4">
         <h3 class="fw-bold ">Trip Details</h3>
 
@@ -78,9 +76,13 @@
           <li>✔ With food & Accomodation</li>
         </ul>
 
-        <a href="#" class="btn btn-success w-100 py-2  rounded-pill">
+
+        {% allowed_roles request '["User"]' as allow %}
+        {% if allow %}
+        <a href="{% url 'razorpay' package.uuid %}" class="btn btn-success w-100 py-2  rounded-pill">
           Book Now
         </a>
+        {% endif %}
       </div>
     </div>
 

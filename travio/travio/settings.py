@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'packages',
     'multiselectfield',
     'authentication',
+    'bookings',
+    'payments'
 ]
 
 MIDDLEWARE = [

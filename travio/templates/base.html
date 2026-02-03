@@ -22,7 +22,8 @@
 <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
 
-
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+	
 	<link rel="stylesheet" href="{% static 'assets/css/service.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/edit-package.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/create-package.css' %}">
@@ -125,7 +126,7 @@
 									<li class="menu-item {% if request.resolver_match.url_name == 'about'%} active {% endif %}"><a href="{% url 'about' %}">About</a></li>
 									<li class="menu-item {% if request.resolver_match.url_name == 'services'%} active {% endif %}"><a href="{% url 'services' %}">Services </a></li>
 									<li class="menu-item {% if request.resolver_match.url_name == 'package-list'%} active {% endif %}"><a href="{% url 'package-list' %}" class="nav-link">Packages</a></li>
-									<li class="menu-item {% if request.resolver_match.url_name == 'contact'%} active {% endif %}"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+									<!-- <li class="menu-item {% if request.resolver_match.url_name == 'contact'%} active {% endif %}"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li> -->
 									<li class="menu-item {% if request.resolver_match.url_name == 'signup'%} active {% endif %}"><a href="{% url 'signup' %}" class="nav-link">Sign Up</a></li>
 								</ul>
 
